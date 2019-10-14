@@ -27,8 +27,8 @@ exports.signup = async (req, res) => {
 
 //Create a passport middleware to handle User login
 exports.login = async (req, res) => {
-    const Email = req.body.Email ;
-    const Password = req.body.Password ;
+    const Email = req.body.Email;
+    const Password = req.body.Password;
     try {
 
         let user = await UserModel.findOne({ where: { Email } });
@@ -49,15 +49,15 @@ exports.login = async (req, res) => {
         const body = { id: user.id, Email: user.Email, isAdmin: user.IsAdmin };
         // let response = Object.assign({}, user);
         user.token = jwt.sign({ user: body }, 'top_secret');
-        
+
         return res.status(200).json({
-            message:"User is logged in Successfully" ,
-            data : user
+            message: "User is logged in Successfully",
+            data: user
         });
 
     } catch (error) {
         return res.status(400).json({
-            message : error.message
+            message: error.message
         });
     }
 };

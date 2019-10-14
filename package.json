@@ -21,11 +21,13 @@
     "express-session": "^1.16.2",
     "jsonwebtoken": "^8.5.1",
     "mocha": "^6.2.1",
+    "morgan": "^1.9.1",
     "mysql2": "^1.7.0",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "sequelize": "^4.17.2",
+    "socket.io": "^2.3.0",
     "sqlite3": "^4.1.0",
     "validator": "^11.1.0"
   }

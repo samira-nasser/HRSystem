@@ -2,7 +2,7 @@
 var connection = require('./DBConnection.js');
 var DataTypes = require('sequelize');
 const bcrypt = require('bcrypt')
-const DepartmenModel = require('./Departments');
+const DepartmentModel = require('./Departments');
 
 var UserModel = connection.define('Users', {
   id: {
@@ -30,10 +30,10 @@ var UserModel = connection.define('Users', {
   DepartmentID: {
     type: DataTypes.INTEGER(11),
     allowNull: false,
-    // references: {
-    //   model: 'Departments',
-    //   key: 'id'
-    // }
+    references: {
+      model: DepartmentModel,
+      key: 'id'
+    }
   },
   IsAdmin: {
     type: DataTypes.INTEGER(1),
@@ -72,9 +72,7 @@ UserModel.prototype.isValidPassword = async function (Password) {
   }
 }
 
-UserModel.associate = function() {
-  UserModel.belongsTo(DepartmenModel,{foreignKey: 'DepartmentID',as: 'DepartmentEmployees',sourcekey:'id'});
-}
+UserModel.belongsTo(DepartmentModel, { foreignKey: 'DepartmentID', as: 'DepartmentEmployees', sourcekey: 'DepartmentID' });
 
 module.exports = UserModel;
 

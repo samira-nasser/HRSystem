@@ -57,7 +57,7 @@ exports.updateEmployee = function (req, res) {
 
 exports.getAllEmployees = function (req, res) {
     let query = getQuery();
-
+        
     UserModel.findAll(query)
 
         .then(function (Employees) {
@@ -97,8 +97,8 @@ function getQuery() {
         //        limit: 50, // this will retrive the last 50 rows (limit)
         //        offset: offset,
         order: [['id', 'DESC']],
-        attributes: [['id', 'EmployeeID'], 'Name', 'Email', 'ManagerID', 'IsAdmin','DepartmentID'],
-        includes: [
+        attributes: [['id', 'EmployeeID'], 'Name', 'Email', 'ManagerID', 'Phone','Address','IsAdmin','DepartmentID'],
+        include: [
             {
                 duplicating: false,
                 as: 'DepartmentEmployees',

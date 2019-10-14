@@ -19,10 +19,8 @@ var DepartmentModel = connection.define('Departments', {
     timestamps: false
   });
 
-  DepartmentModel.associate = function() {
-
-    DepartmentModel.hasMany(UserModel,{foreignKey: 'DepartmentID',as: 'DepartmentEmployees', targetkey:'id'});
-    
- }
+//   DepartmentModel.associate = function() {
+//     DepartmentModel.hasMany(UserModel,{foreignKey: 'DepartmentID',as: 'DepartmentEmployees', targetkey:'DepartmentID'}); 
+//  }
 
   module.exports = DepartmentModel;
