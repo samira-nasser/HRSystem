@@ -24,7 +24,7 @@ router.post('/deleteEmployee',authMiddleware.isAdmin, userController.deleteEmplo
 
 router.post('/updateEmployee', userController.updateEmployee);
 
-router.get('/getAllEmployees',authMiddleware.isAdmin, userController.getAllEmployees);
+router.get('/getAllEmployees',userController.getAllEmployees);
 
 router.post('/getEmployeeByID',authMiddleware.isAdmin, userController.getEmployeeByID);
 

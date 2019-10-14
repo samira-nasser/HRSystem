@@ -30,10 +30,10 @@ var UserModel = connection.define('Users', {
   DepartmentID: {
     type: DataTypes.INTEGER(11),
     allowNull: false,
-    references: {
-      model: 'Departments',
-      key: 'id'
-    }
+    // references: {
+    //   model: 'Departments',
+    //   key: 'id'
+    // }
   },
   IsAdmin: {
     type: DataTypes.INTEGER(1),
@@ -73,9 +73,7 @@ UserModel.prototype.isValidPassword = async function (Password) {
 }
 
 UserModel.associate = function() {
-      
   UserModel.belongsTo(DepartmenModel,{foreignKey: 'DepartmentID',as: 'DepartmentEmployees',sourcekey:'id'});
-
 }
 
 module.exports = UserModel;

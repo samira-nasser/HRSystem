@@ -1,7 +1,5 @@
 const UserModel = require('../models/Users');
 const DepartmentModel = require('../models/Departments');
-const jwt = require('jsonwebtoken');
-
 
 exports.addEmployee = function (req, res) {
     UserModel.create(req.body)
@@ -99,8 +97,8 @@ function getQuery() {
         //        limit: 50, // this will retrive the last 50 rows (limit)
         //        offset: offset,
         order: [['id', 'DESC']],
-        attributes: [['id', 'EmployeeID'], 'Name', 'Email', 'ManagerID', 'IsAdmin'],
-        include: [
+        attributes: [['id', 'EmployeeID'], 'Name', 'Email', 'ManagerID', 'IsAdmin','DepartmentID'],
+        includes: [
             {
                 duplicating: false,
                 as: 'DepartmentEmployees',

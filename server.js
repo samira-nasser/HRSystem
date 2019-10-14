@@ -8,7 +8,8 @@ const benefitsRoute = require('./routes/benefitsRoute');
 const passport = require('passport');
 const chalk = require('chalk');
 
-require('dotenv').config()
+// require('dotenv').config();
+require('dotenv').config({path: __dirname + '/.env'});
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -20,7 +21,7 @@ require('dotenv').config()
 const app = express();
 
 const PORT = process.env.PORT || 3000;
-
+ 
 app.use(session({
 	secret: 'secret',
 	resave: true,
