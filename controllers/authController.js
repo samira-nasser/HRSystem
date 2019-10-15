@@ -2,15 +2,15 @@ const UserModel = require('../models/Users');
 const departmentModel = require('../models/Departments');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-require('dotenv').config({path: __dirname + '/.env'});
-const JWT_SECRET = process.env.JWT_SECRET ;
+require('dotenv').config({ path: __dirname + '/.env' });
+const JWT_SECRET = process.env.JWT_SECRET;
 
 //Create a passport middleware to handle user registration
 exports.signup = async (req, res) => {
     try {
         let userData = req.body;
-        let departmentID = userData.departmentID;
-        let department = await departmentModel.findOne({ where: { id: departmentID } });
+        let departmentID = userData.DepartmentID;
+        let department = await departmentModel.find({ where: { id: departmentID } });
         if (department) {
             let user = await UserModel.create(userData);
             user = JSON.parse(JSON.stringify(user))
@@ -30,7 +30,6 @@ exports.signup = async (req, res) => {
                 message: 'Department ID Is Not Supported , Department for this user not found!'
             });
         }
-
 
     } catch (error) {
         return res.status(400).json({

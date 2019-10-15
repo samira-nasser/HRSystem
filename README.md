@@ -32,9 +32,9 @@
 # API
 - /signup post
     - body {
-        	"Email":"nada@sys.com",
+        	"Email":"admin@sys.com",
             "Password":"123456",
-            "Name":"nada",
+            "Name":"admin",
             "ManagerID":2,
             "DepartmentID":1,
             "Phone":"1234597878",
@@ -54,8 +54,7 @@
             "ManagerID":2,
             "DepartmentID":1,
             "Phone":"1234597878",
-            "Address":"Hopa Address__SR",
-            "IsAdmin":1
+            "Address":"Hopa Address__SR"
     }
 - /updateEmployee post 
     -body {
