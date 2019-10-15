@@ -2,7 +2,7 @@ const messageModel = require('../models/messages');
 
 exports.getAllMessages = function(req,res){
     let authorID = req.query.userID ;
-    messageModel.find({where : authorID})
+    messageModel.find({where : { Author : authorID} })
     .then(function(messages){
         return res.status(200).json({
             message : "All Messages retrieved Successfully" ,
