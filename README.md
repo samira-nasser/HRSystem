@@ -24,7 +24,7 @@
  # Getting started
 - install package.json (npm install) , this should install all packages required
 - create your .env file as similar to .env.example
-- Using Sqlite with Sequalize with [Sync] method , Tables are being gereated Automatically
+- Using Sqlite with Sequalize with [Sync] method , Tables are being generated Automatically
 - Write in terminal (node server.js) to run the project server 
 - open browser with localhost:3000 as 3000 the default port
 
