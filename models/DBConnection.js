@@ -17,7 +17,7 @@ let connection = new sequelize({
 
 const beforeAction = async () => {
     await connection.authenticate();
-    // await connection.drop();
+    await connection.drop();
     await connection.sync()
     .then(() => console.log('Connection to the database has been established successfully'))
     .catch((error) => console.log('error is ', error));

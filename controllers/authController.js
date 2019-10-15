@@ -11,25 +11,27 @@ exports.signup = async (req, res) => {
         let userData = req.body;
         let departmentID = userData.DepartmentID;
         let department = await departmentModel.find({ where: { id: departmentID } });
-        if (department) {
-            let user = await UserModel.create(userData);
-            user = JSON.parse(JSON.stringify(user))
-            user.Password = undefined;
-            delete user.Password;
-
-            const body = { id: user.id, Email: user.Email, isAdmin: user.IsAdmin };
-            // let response = Object.assign({}, user);
-            user.token = jwt.sign({ user: body }, 'top_secret');
-            return res.status(200).json({
-                message: 'New User Added Successfully',
-                data: user
-            });
+        // for first sign up in case if not exist any department
+        if (!department) {
+            let department = await departmentModel.create({Name : "Software Development"});
+            userData.DepartmentID = department.id ; 
         }
-        else {
-            return res.status(404).json({
-                message: 'Department ID Is Not Supported , Department for this user not found!'
-            });
-        }
+        let user = await UserModel.create(userData);
+        user = JSON.parse(JSON.stringify(user))
+        user.Password = undefined;
+        delete user.Password;
+        const body = { id: user.id, Email: user.Email, isAdmin: user.IsAdmin };
+        user.token = jwt.sign({ user: body }, 'top_secret');
+        return res.status(200).json({
+            message: 'New User Added Successfully',
+            data: user
+        });
+        // in case the departments table has a real seeds 
+        // else {
+        //     return res.status(404).json({
+        //         message: 'Department ID Is Not Supported , Department for this user not found!'
+        //     });
+        // }
 
     } catch (error) {
         return res.status(400).json({
