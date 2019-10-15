@@ -17,7 +17,7 @@ exports.addBenefits = function(req,res){
 }
 
 exports.deleteBenefits = function(req,res){
-    const benefitsID = req.body.id;
+    const benefitsID = req.query.id;
     BenefitsModel.destroy({where :{id : benefitsID}})
     .then(function(){
         return res.status(200).json({

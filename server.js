@@ -5,6 +5,8 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/userRoutes');
 const benefitsRoute = require('./routes/benefitsRoute');
+const departmentRoute = require('./routes/departmentRoutes');
+const chatRoute = require('./routes/chatRoutes');
 logger = require('morgan');
 const passport = require('passport');
 const chalk = require('chalk');
@@ -47,8 +49,10 @@ app.get('/', function(req, res) {
 // app.use(authMiddleware);
 
 app.use('/user', userRoutes);
-
+app.use('/department', departmentRoute);
 app.use('/benefits', benefitsRoute);
+app.use('/chatUser', chatRoute);
+
 
 app.listen(PORT, function() {
     console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), PORT, app.get('env'));

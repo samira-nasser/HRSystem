@@ -15,7 +15,7 @@ router.post('/addBenefits',authMiddleware.isAdmin,benefitsController.addBenefits
 
 router.post('/updateBenefits',authMiddleware.isAdmin, benefitsController.updateBenefits);
 
-router.post('/deleteBenefits',authMiddleware.isAdmin, benefitsController.deleteBenefits);
+router.get('/deleteBenefits',authMiddleware.isAdmin, benefitsController.deleteBenefits);
 
 router.post('/Search', benefitsController.searchForBenefits);
 

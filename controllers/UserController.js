@@ -16,7 +16,7 @@ exports.addEmployee = function (req, res) {
 }
 
 exports.deleteEmployee = function (req, res) {
-    employeeID = req.body.id;
+    employeeID = req.query.id;
     UserModel.destroy({ where: { id: employeeID } })
         .then(function () {
             return res.status(200).json({
@@ -74,7 +74,7 @@ exports.getAllEmployees = function (req, res) {
 }
 
 exports.getEmployeeByID = function (req, res) {
-    let userID = req.body.id;
+    let userID = req.query.id;
     let query = getQuery();
     query.where = { id: userID };
     UserModel.findAll(query)

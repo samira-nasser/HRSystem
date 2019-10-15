@@ -1,21 +1,36 @@
 const UserModel = require('../models/Users');
+const departmentModel = require('../models/Departments');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
+require('dotenv').config({path: __dirname + '/.env'});
+const JWT_SECRET = process.env.JWT_SECRET ;
 
 //Create a passport middleware to handle user registration
 exports.signup = async (req, res) => {
     try {
-        let user = await UserModel.create(req.body);
-        user = JSON.parse(JSON.stringify(user))
-        user.Password = undefined;
-        delete user.Password;
+        let userData = req.body;
+        let departmentID = userData.departmentID;
+        let department = await departmentModel.findOne({ where: { id: departmentID } });
+        if (department) {
+            let user = await UserModel.create(userData);
+            user = JSON.parse(JSON.stringify(user))
+            user.Password = undefined;
+            delete user.Password;
 
-        const body = { id: user.id, Email: user.Email, isAdmin: user.IsAdmin };
-        // let response = Object.assign({}, user);
-        user.token = jwt.sign({ user: body }, 'top_secret');
-        return res.status(200).json({
-            message: 'New User Added Successfully',
-            data: user
-        });
+            const body = { id: user.id, Email: user.Email, isAdmin: user.IsAdmin };
+            // let response = Object.assign({}, user);
+            user.token = jwt.sign({ user: body }, 'top_secret');
+            return res.status(200).json({
+                message: 'New User Added Successfully',
+                data: user
+            });
+        }
+        else {
+            return res.status(404).json({
+                message: 'Department ID Is Not Supported , Department for this user not found!'
+            });
+        }
+
 
     } catch (error) {
         return res.status(400).json({
@@ -48,7 +63,7 @@ exports.login = async (req, res) => {
 
         const body = { id: user.id, Email: user.Email, isAdmin: user.IsAdmin };
         // let response = Object.assign({}, user);
-        user.token = jwt.sign({ user: body }, 'top_secret');
+        user.token = jwt.sign({ user: body }, JWT_SECRET);
 
         return res.status(200).json({
             message: "User is logged in Successfully",

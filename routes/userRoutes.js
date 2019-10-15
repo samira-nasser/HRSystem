@@ -20,12 +20,12 @@ router.use(passport.authenticate('jwt', { session : false }))
 
 router.post('/addEmployee',validatorMiddleware.checkEmailValidation,validatorMiddleware.checkEmptyPhone,authMiddleware.isAdmin, userController.addEmployee);
 
-router.post('/deleteEmployee',authMiddleware.isAdmin, userController.deleteEmployee);
+router.get('/deleteEmployee',authMiddleware.isAdmin, userController.deleteEmployee);
 
 router.post('/updateEmployee', userController.updateEmployee);
 
 router.get('/getAllEmployees',userController.getAllEmployees);
 
-router.post('/getEmployeeByID',authMiddleware.isAdmin, userController.getEmployeeByID);
+router.get('/getEmployeeByID',authMiddleware.isAdmin, userController.getEmployeeByID);
 
 module.exports = router;

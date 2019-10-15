@@ -1,17 +1,89 @@
 #HRSystem Challenge !
  **The full HR System** web application, that maintain various functionalities .
 
- 1. Installation
- 2. .ENV FILE
+## Contents
 
- # Installation
-    ## Requirements
+- [Features](#features)
+- [Getting started](#getting-started)
+- API
+  - [Methods](#api)
+  - [Options](#options)
+  - [Validation errors](#validation-errors)
+- [Plugins](#plugins)
+- [Related packages](#related-packages)
+- [Tests](#tests)
 
-For development, you will only need Node.js and a node global package, npm, installed in your environement.
-Use the package file to install required files from used technologies versions.
+## Features
 
-npm install
+- Login/Register Authentication system
+- Add/Edit/Delete/index Employees
+- Add/Edit/Delete/index Benefits
+- Search Enigne
+- Roles/Permissions as for employee and HR Role
 
+ # Getting started
+- install package.json (npm install) , this should install all packages required
+- create your .env file as similar to .env.example
+- Using Sqlite with Sequalize with [Sync] method , Tables are being gereated Automatically
+- Write in terminal (node server.js) to run the project server 
+- open browser with localhost:3000 as 3000 the default port
+
+
+# API
+- /signup post
+    - body {
+        	"Email":"nada@sys.com",
+            "Password":"123456",
+            "Name":"nada",
+            "ManagerID":2,
+            "DepartmentID":1,
+            "Phone":"1234597878",
+            "Address":"First Address Line__ST",
+            "IsAdmin":1
+    }
+- /login post
+    -body {
+        	"Email":"admin@sys.com",
+	        "Password":"123456"
+    }
+- /addEmployee post
+    -body {
+            "Email":"nada@sys.com",
+            "Password":"123456",
+            "Name":"nada",
+            "ManagerID":2,
+            "DepartmentID":1,
+            "Phone":"1234597878",
+            "Address":"Hopa Address__SR",
+            "IsAdmin":1
+    }
+- /updateEmployee post 
+    -body {
+        "Name" : Samira,
+        "Phone":"12346789"
+    }
+- /deleteEmployee/:id get
+- /addBenefits post
+    -body{
+        "Title":"Offer",
+        "Description":"good offer as Senior"
+    }
+- /updateBenefits post
+    -body {
+        "Description":"good offer as Junior"
+    }
+- /deleteBenefits/:id get
+- searchForBenefits post
+    -body {
+        "SearchTerm" : "offer"
+    }
+- /getAllEmployees get
+- /getEmployeeByID/:id get
+- /getDepartmentByID/:id get
+
+## Tests
+
+> npm test
 
  ## .ENV FILE
 
@@ -19,12 +91,8 @@ npm install
 
 > BASE_URL=http://localhost:3000	
 
-## Running the project
+> PORT = 3000
 
-Run the server (Express - Node js)
+> databasestorage = 'CompanySystem'
 
---> nodemon
-
-Or
-
---> node server.js
+> JWT_SECRET ='top_secret'
