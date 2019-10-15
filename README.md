@@ -78,7 +78,10 @@
     }
 - /getAllEmployees get
 - /getEmployeeByID/:id get
-- /getDepartmentByID/:id get
+- /addDepartment post
+    -body {
+        "Name" : "Software Development"
+    }
 
 ## Tests
 
