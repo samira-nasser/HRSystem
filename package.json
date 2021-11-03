@@ -29,6 +29,6 @@
     "sequelize": "^4.17.2",
     "socket.io": "^2.3.0",
     "sqlite3": "^4.1.0",
-    "validator": "^11.1.0"
+    "validator": "^13.7.0"
   }
 }
